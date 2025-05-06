@@ -55,6 +55,12 @@
     <string name="cancel">Cancel</string>
     <string name="ignore">Ignore</string>
 
+    <!-- Update Notification -->
+    <string name="update_available">Update Available</string>
+    <string name="update_message">A new version %1$s is available.</string>
+    <string name="update_later">Later</string>
+    <string name="update_download">Download</string>
+
     <!-- Basic Settings -->
     <string name="socksAddress">Socks Address</string>
     <string name="socksPort">Socks Port</string>

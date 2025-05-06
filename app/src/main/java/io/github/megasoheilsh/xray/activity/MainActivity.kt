@@ -34,10 +34,12 @@ import io.github.megasoheilsh.xray.Settings
 import io.github.megasoheilsh.xray.adapter.ProfileAdapter
 import io.github.megasoheilsh.xray.database.Link
 import io.github.megasoheilsh.xray.databinding.ActivityMainBinding
+import io.github.megasoheilsh.xray.databinding.DialogUpdateBinding
 import io.github.megasoheilsh.xray.dto.ProfileList
 import io.github.megasoheilsh.xray.helper.HttpHelper
 import io.github.megasoheilsh.xray.helper.LinkHelper
 import io.github.megasoheilsh.xray.helper.ProfileTouchHelper
+import io.github.megasoheilsh.xray.helper.UpdateHelper
 import io.github.megasoheilsh.xray.service.TProxyService
 import io.github.megasoheilsh.xray.viewmodel.ProfileViewModel
 import kotlinx.coroutines.Dispatchers
@@ -121,6 +123,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val pathSegments = it.pathSegments
             if (pathSegments.size > 0) processLink(pathSegments[0])
         }
+        
+        // Check for updates
+        checkForUpdates()
     }
 
     override fun onStart() {
@@ -394,5 +399,40 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             return false
         }
         return true
+    }
+
+    private fun checkForUpdates() {
+        lifecycleScope.launch {
+            val updateInfo = UpdateHelper.checkForUpdates()
+            if (updateInfo != null) {
+                withContext(Dispatchers.Main) {
+                    showUpdateDialog(updateInfo)
+                }
+            }
+        }
+    }
+
+    private fun showUpdateDialog(updateInfo: UpdateHelper.UpdateInfo) {
+        val dialogBinding = DialogUpdateBinding.inflate(layoutInflater)
+        
+        val formattedMessage = getString(R.string.update_message, "v${updateInfo.version}")
+        dialogBinding.updateMessage.text = formattedMessage
+        
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setView(dialogBinding.root)
+            .setCancelable(true)
+            .create()
+        
+        dialogBinding.btnDismiss.setOnClickListener {
+            dialog.dismiss()
+        }
+        
+        dialogBinding.btnDownload.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(updateInfo.downloadUrl))
+            startActivity(intent)
+            dialog.dismiss()
+        }
+        
+        dialog.show()
     }
 }
