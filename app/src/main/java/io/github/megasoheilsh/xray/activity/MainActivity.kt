@@ -160,10 +160,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val pathSegments = deepLink.pathSegments
             if (pathSegments.size > 0) processLink(pathSegments[0])
         }
+        
+        // Check for updates
+        checkForUpdates()
     }
-
-    // Check for updates
-    checkForUpdates()
 
     override fun onStart() {
         super.onStart()
