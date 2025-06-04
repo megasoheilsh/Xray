@@ -1,0 +1,17 @@
+package io.github.megasoheilsh.xray.receiver
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import io.github.megasoheilsh.xray.Settings
+import io.github.megasoheilsh.xray.service.TProxyService
+
+class BootReceiver : BroadcastReceiver() {
+
+    override fun onReceive(context: Context?, intent: Intent?) {
+        if (context == null || intent == null || intent.action != Intent.ACTION_BOOT_COMPLETED) return
+        val settings = Settings(context)
+        if (!settings.bootAutoStart) return
+        TProxyService.start(context)
+    }
+}
