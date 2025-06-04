@@ -27,17 +27,26 @@ class UpdateHelper {
                         val response = connection.inputStream.bufferedReader().use { it.readText() }
                         val releases = JSONArray(response)
 
-                        if (releases.length() > 0) {
-                            val latestRelease = releases.getJSONObject(0)
-                            val tagName = latestRelease.getString("tag_name")
-                            val releaseUrl = latestRelease.getString("html_url")
+                        // Iterate through releases to find the latest stable release
+                        for (i in 0 until releases.length()) {
+                            val release = releases.getJSONObject(i)
+                            
+                            // Skip pre-releases
+                            if (release.getBoolean("prerelease")) {
+                                continue
+                            }
 
+                            val tagName = release.getString("tag_name")
+                            val releaseUrl = release.getString("html_url")
                             val latestVersion = tagName.replace("v", "").trim()
                             val currentVersion = BuildConfig.VERSION_NAME
 
                             if (isNewer(latestVersion, currentVersion)) {
                                 return@withContext UpdateInfo(latestVersion, releaseUrl)
                             }
+
+                            // If we found a stable release but it's not newer, no need to check older releases
+                            break
                         }
                     }
                     null
