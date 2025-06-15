@@ -95,8 +95,6 @@ class LinksManagerActivity : AppCompatActivity() {
     }
 
     private fun refreshLinks() {
-        val loadingDialog = loadingDialog()
-        loadingDialog.show()
         lifecycleScope.launch {
             val links = linkViewModel.activeLinks()
             links.forEach { link ->
@@ -116,7 +114,6 @@ class LinksManagerActivity : AppCompatActivity() {
             }
             withContext(Dispatchers.Main) {
                 TProxyService.newConfig(applicationContext)
-                loadingDialog.dismiss()
                 finish()
             }
         }

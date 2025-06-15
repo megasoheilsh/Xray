@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.ColorStateList
-import android.net.Uri
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
@@ -354,7 +353,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun refreshLinks() {
-        startActivity(LinksManagerActivity.refreshLinks(applicationContext).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION))
+        startActivity(LinksManagerActivity.refreshLinks(applicationContext))
     }
 
     private fun openLink(uri: URI) {
