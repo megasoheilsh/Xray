@@ -82,7 +82,7 @@ class Settings(private val context: Context) {
         get() = sharedPreferences.getBoolean("bootAutoStart", false)
         set(value) = sharedPreferences.edit { putBoolean("bootAutoStart", value) }
     var refreshLinksOnOpen: Boolean
-        get() = sharedPreferences.getBoolean("refreshLinksOnOpen", false)
+        get() = sharedPreferences.getBoolean("refreshLinksOnOpen", true)
         set(value) = sharedPreferences.edit { putBoolean("refreshLinksOnOpen", value) }
 
     /** Advanced */
