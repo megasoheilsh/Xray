@@ -67,7 +67,7 @@ class Settings(private val context: Context) {
         get() = sharedPreferences.getInt("pingTimeout", 5)
         set(value) = sharedPreferences.edit { putInt("pingTimeout", value) }
     var refreshLinksInterval: Int
-        get() = sharedPreferences.getInt("refreshLinksInterval", 30)
+        get() = sharedPreferences.getInt("refreshLinksInterval", 240)
         set(value) = sharedPreferences.edit { putInt("refreshLinksInterval", value) }
     var bypassLan: Boolean
         get() = sharedPreferences.getBoolean("bypassLan", true)
