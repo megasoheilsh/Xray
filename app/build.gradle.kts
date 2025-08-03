@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -23,7 +25,7 @@ android {
         minSdk = 26
         targetSdk = 36
         versionCode = calcVersionCode()
-        versionName = "10.9.1"
+        versionName = "11.0.0"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -50,10 +52,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
     externalNativeBuild {
         ndkVersion = "27.1.12297006"
         ndkBuild {
@@ -75,6 +73,12 @@ android {
             //noinspection ChromeOsAbiSupport
             include(*abiTarget.split(",").toTypedArray())
         }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
