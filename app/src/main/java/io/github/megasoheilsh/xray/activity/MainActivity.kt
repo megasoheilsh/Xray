@@ -38,10 +38,12 @@ import io.github.megasoheilsh.xray.Settings
 import io.github.megasoheilsh.xray.adapter.ProfileAdapter
 import io.github.megasoheilsh.xray.database.Link
 import io.github.megasoheilsh.xray.databinding.ActivityMainBinding
+import io.github.megasoheilsh.xray.databinding.DialogUpdateBinding
 import io.github.megasoheilsh.xray.dto.ProfileList
 import io.github.megasoheilsh.xray.helper.HttpHelper
 import io.github.megasoheilsh.xray.helper.LinkHelper
 import io.github.megasoheilsh.xray.helper.ProfileTouchHelper
+import io.github.megasoheilsh.xray.helper.UpdateHelper
 import io.github.megasoheilsh.xray.service.TProxyService
 import io.github.megasoheilsh.xray.viewmodel.LinkViewModel
 import io.github.megasoheilsh.xray.viewmodel.ProfileViewModel
