@@ -17,11 +17,11 @@ fun calcVersionCode(): Int {
 }
 
 android {
-    namespace = "io.github.saeeddev94.xray"
+    namespace = "io.github.megasoheilsh.xray"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "io.github.saeeddev94.xray"
+        applicationId = "io.github.megasoheilsh.xray"
         minSdk = 26
         targetSdk = 36
         versionCode = calcVersionCode()
