@@ -9,4 +9,4 @@
 	url = https://github.com/XTLS/Xray-core.git
 [submodule "XrayHelper"]
 	path = XrayHelper
-	url = https://github.com/SaeedDev94/XrayHelper.git
+	url = https://github.com/megasoheilsh/XrayHelper.git
